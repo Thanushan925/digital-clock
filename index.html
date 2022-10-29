@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Clock</title>
+
+        <meta name="Author" content="Thanushan Satheeskumar">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Just your standard digital clock.">
+
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Nabla&display=swap" rel="stylesheet">
+
+        <script type="text/javascript" src="scripts.js"></script>
+    </head>
+
+    <body>
+        <div class="time" onload="displayTime()">
+            <h1 id="timeDisplay"></h1>
+            <h2 id="periodDisplay"></h2>
+
+        </div>
+        <div class="quote">
+            <p><em>"Time you enjoy wasting is not wasted time."</em> ~ <span>Marthe Troly-Curtin</span></p>
+        </div>
+
+        <script>
+            function displayTime() {    
+                var currentDate = new Date();
+                var hours = currentDate.getHours();
+                var minutes = currentDate.getMinutes();
+                var seconds = currentDate.getSeconds();
+                var period = "AM";
+
+                if (hours == 0) {
+                    hours = 12;
+                }
+
+                if (hours > 12) {
+                    hours = hours - 12;
+                    period = "PM";
+                }
+
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+
+                var currentTime = hours + ":" + minutes + ":" + seconds + " ";
+
+                document.getElementById("timeDisplay").innerText = currentTime;
+                document.getElementById("periodDisplay").innerText = period;
+
+                setTimeout(displayTime, 1000);
+            }
+            displayTime();
+        </script>
+    </body>
+</html>
